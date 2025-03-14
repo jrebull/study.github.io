@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio: Modelos de Redes Neuronales</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6c757d;
+            --accent-color: #3d8577;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #2c3e50);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 25px 0 15px 0;
+        }
+        
+        h4 {
+            color: var(--secondary-color);
+            font-size: 1.25rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .subsection {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: var(--border-radius);
+        }
+        
+        .note {
+            background-color: #e2f0f7;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: var(--border-radius);
+        }
+        
+
+        
+        .key-point {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Guía de Estudio: Modelos de Redes Neuronales</h1>
+        <p>Una exploración detallada de Transformers, LSTM y RNNs</p>
+    </header>
+
+    <div class="container">
+        <div class="grid-container">
+
+
+            <div class="content">
+                <section id="transformer" class="section">
+                    <h2>I. Modelo Transformer</h2>
+                    
+                    <div class="subsection">
+                        <h3>1. Matrices Query, Key y Value (Q, K, V)</h3>
+                        <h4>Derivación:</h4>
+                        <p>Se generan aplicando diferentes transformaciones lineales aprendidas a las representaciones (embeddings) de la entrada.</p>
+                
+                        
+                        <h4>Motivación:</h4>
+                        <p>Usar transformaciones distintas permite que el modelo capture múltiples relaciones y características relevantes dentro de los datos.</p>
+                        
+                        <h4>Dimensiones:</h4>
+                        <p>Aunque están relacionadas con la dimensión del modelo (d_model), Q, K y V pueden tener dimensiones específicas (por ejemplo, d_k y d_v) que no necesariamente son iguales entre sí.</p>
+                
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2. Mecanismo de Atención</h3>
+                        <h4>Definición:</h4>
+                        <p>La atención asigna un peso a cada posición de la secuencia de entrada, determinando qué tan relevante es cada elemento para producir una salida en una posición dada.</p>
+                
+                        
+                        <h4>Ventajas frente a otros modelos:</h4>
+                        <p>Permite que el modelo considere toda la secuencia de entrada en lugar de depender solo de la posición previa, lo cual es esencial para capturar dependencias a largo plazo.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3. Multi-Head Attention</h3>
+                        <h4>Objetivo:</h4>
+                        <p>Permite al modelo analizar la secuencia desde múltiples perspectivas simultáneamente, extrayendo diferentes tipos de relaciones y patrones.</p>
+                
+                        
+                        <h4>Beneficios:</h4>
+                        <p>• Mejora la riqueza de la representación interna.</p>
+                        <p>• Ayuda a capturar patrones complejos de manera más efectiva.</p>
+                        
+                        <div class="warning">
+                            <h4>Precaución:</h4>
+                            <p>No se trata de una técnica para reducir la complejidad computacional o de una herramienta autoregresiva.</p>
+
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4. Self-Attention</h3>
+                        <h4>Concepto:</h4>
+                        <p>Es una forma de atención en la que el modelo utiliza la misma entrada para derivar Q, K y V, permitiendo enfocarse en distintas partes de la misma secuencia.</p>
+                
+                        
+                        <h4>Funcionalidad:</h4>
+                        <p>Facilita la identificación de dependencias internas dentro de la secuencia, lo cual es crucial para tareas de traducción, resumen y más.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>5. Dimensiones en la Secuencia de Entrada</h3>
+                        <h4>Ejemplo Práctico:</h4>
+                        <p>Para una secuencia de longitud N con embeddings de dimensión d_model:</p>
+                        <p>• Q y K tienen dimensiones N x d_k.</p>
+                
+                        <p>• V tiene dimensiones N x d_v.</p>
+                
+                        
+                        <h4>Relación de Dimensiones:</h4>
+                        <p>d_k y d_v a menudo se escogen como iguales a d_model o como una fracción de este, dependiendo de la arquitectura y necesidades del modelo.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>6. Componentes Clave del Transformer</h3>
+                        <h4>Elementos esenciales:</h4>
+                        <p>• <span class="key-point">Positional Encoding:</span> Añade información posicional a la entrada, ya que el modelo no procesa la secuencia de forma secuencial.</p>
+                        <p>• <span class="key-point">Feed Forward Neural Networks:</span> Aplica transformaciones no lineales a cada posición de la secuencia.</p>
+                        <p>• <span class="key-point">Multi-Head Attention:</span> Permite el procesamiento paralelo de diferentes subespacios de atención.</p>
+                
+                        
+                        <div class="note">
+                            <h4>Lo que no incluye:</h4>
+                            <p>Las Unidades Recurrentes (como GRU) no forman parte de la arquitectura del Transformer.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="lstm" class="section">
+                    <h2>II. Celdas LSTM</h2>
+                    
+                    <div class="subsection">
+                        <h3>1. Componentes Fundamentales</h3>
+                        <h4>Puertas Principales:</h4>
+                        <p>• <span class="key-point">Input Gate:</span> Controla la incorporación de nueva información en la celda.</p>
+                        <p>• <span class="key-point">Forget Gate:</span> Decide qué información descartar del estado de la celda.</p>
+                        <p>• <span class="key-point">Output Gate:</span> Regula la salida de información hacia el estado oculto.</p>
+                
+                        
+                        <div class="note">
+                            <h4>Lo que no es parte:</h4>
+                            <p>No se incluye ningún "Convolutional Gate" dentro de las LSTM tradicionales.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2. El Estado de la Celda</h3>
+                        <h4>Función Principal:</h4>
+                        <p>Actúa como memoria a lo largo de los timesteps, permitiendo que la información relevante se conserve y se transfiera a lo largo de la secuencia.</p>
+                
+                        
+                        <h4>Interacción con las puertas:</h4>
+                        <p>Las puertas determinan cómo se actualiza, mantiene o descarta la información en el estado de la celda.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>3. Capacidades y Ventajas</h3>
+                        <h4>Captura de Dependencias a Largo Plazo:</h4>
+                        <p>Las LSTM están diseñadas para retener información en secuencias largas, superando en parte las limitaciones de las RNNs tradicionales.</p>
+                
+                        
+                        <h4>Manejo del Problema del Gradiente:</h4>
+                        <p>Gracias a las puertas, las LSTM mitigan el problema del gradiente que desaparece, facilitando el entrenamiento de redes profundas en tareas secuenciales.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>4. Limitaciones</h3>
+                        <h4>Entrenamiento con BPTT:</h4>
+                        <p>Las LSTM aún requieren el uso de Backpropagation Through Time (BPTT) para el ajuste de sus parámetros.</p>
+                
+                        
+                        <h4>Persistencia de Problemas:</h4>
+                        <p>Aunque mejoradas, las LSTM no eliminan completamente los problemas de gradientes que desaparecen o explotan.</p>
+                
+                    </div>
+                </section>
+                
+                <section id="rnns" class="section">
+                    <h2>III. Redes Neuronales Recurrentes (RNNs)</h2>
+                    
+                    <div class="subsection">
+                        <h3>1. Backpropagation Through Time (BPTT)</h3>
+                        <h4>Definición:</h4>
+                        <p>Es el método de entrenamiento que "desenrolla" la red a lo largo del tiempo para calcular los gradientes y ajustar los parámetros en cada paso temporal.</p>
+                
+                        
+                        <h4>Importancia del Desenrollado:</h4>
+                        <p>Se debe a que la misma función se aplica en cada timestep, y es necesario propagar la información a través del tiempo para capturar las dependencias.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>2. Problemas de Gradientes</h3>
+                        <h4>Gradientes que Desaparecen y Explosan:</h4>
+                        <p>Las RNNs tradicionales son susceptibles a que los gradientes se vuelvan demasiado pequeños (desaparecer) o excesivamente grandes (explotar).</p>
+                
+                        
+                        <h4>Impacto:</h4>
+                        <p>Estos problemas dificultan el aprendizaje de dependencias a largo plazo, limitando la efectividad de las RNNs en secuencias extensas.</p>
+                        
+                        <h4>Comparación:</h4>
+                        <p>Las RNNs vanilla carecen de mecanismos internos (como las puertas en las LSTM) para mitigar estos problemas.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
